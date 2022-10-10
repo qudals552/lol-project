@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lol.search.mapper.SearchMapper">
+
+<!-- 	<select id="selectSummoner" parameterType="java.util.HashMap" resultType="java.util.HashMap"> -->
+<!-- 		SELECT  COUNT(1)  -->
+<!-- 		  FROM  tb_summoner ts -->
+<!-- 		 WHERE  ACCOUNT_ID = #{accountId} -->
+<!--   	</select> -->
+  	
+	<select id="selectSummonerCount" parameterType="java.util.HashMap" resultType="int">
+		SELECT  COUNT(1) 
+		  FROM  tb_summoner TS
+		 WHERE  ACCOUNT_ID = #{accountId, jdbcType=VARCHAR}
+		   AND  USE_YN = 'Y'
+  	</select>
+	
+	<insert id="insertSummoner" parameterType="java.util.HashMap">
+	   INSERT INTO tb_summoner
+	   		(
+				  ACCOUNT_ID
+				, ID
+				, NAME
+				, SUMMONER_LEVEL
+				, PROFILE_ICON_ID
+				, REVISION_DATE
+				, PUUID
+				, TIER
+				, RANK
+				, LEAGUE_ID
+				, LEAGUE_POINTS
+				, WINS
+				, LOSSES
+				, REG_DATE
+				, USE_YN
+			) 
+			VALUES
+			(
+				  #{accountId, jdbcType=VARCHAR}
+				, #{id, jdbcType=VARCHAR}
+				, #{name, jdbcType=VARCHAR}
+				, #{summonerLevel, jdbcType=VARCHAR}
+				, #{profileIconId, jdbcType=VARCHAR}
+				, #{revisionDate, jdbcType=VARCHAR}
+				, #{puuid, jdbcType=VARCHAR}
+				, #{tier, jdbcType=VARCHAR}
+				, #{rank, jdbcType=VARCHAR}
+				, #{leagueId, jdbcType=VARCHAR}
+				, #{leaguePoints, jdbcType=VARCHAR}
+				, #{wins, jdbcType=VARCHAR}
+				, #{losses, jdbcType=VARCHAR}
+				, now()
+				, 'Y'
+			)
+  	</insert>
+  	
+  	<update id="updateSummoner" parameterType="java.util.HashMap">
+		UPDATE  tb_summoner
+		   SET    ID = #{id, jdbcType=VARCHAR}
+		   	    , NAME = #{name, jdbcType=VARCHAR}
+		   	    , SUMMONER_LEVEL = #{summonerLevel, jdbcType=VARCHAR}
+		   	    , PROFILE_ICON_ID = #{profileIconId, jdbcType=VARCHAR}
+		   	    , REVISION_DATE = #{revisionDate, jdbcType=VARCHAR}
+		   	    , PUUID = #{puuid, jdbcType=VARCHAR}
+		   	    , TIER = #{tier, jdbcType=VARCHAR}
+		   	    , RANK = #{rank, jdbcType=VARCHAR}
+		   	    , LEAGUE_ID = #{leagueId, jdbcType=VARCHAR}
+		   	    , LEAGUE_POINTS = #{leaguePoints, jdbcType=VARCHAR}
+		   	    , WINS = #{wins, jdbcType=VARCHAR}
+		   	    , LOSSES = #{losses, jdbcType=VARCHAR}
+		   	    , LAST_UP_DATE = now()
+		 WHERE  ACCOUNT_ID = #{accountId, jdbcType=VARCHAR}
+		   AND  USE_YN = 'Y'
+	</update>
+	
+  	<update id="deleteSummoner" parameterType="java.util.HashMap">
+		UPDATE  tb_summoner
+		   SET    USE_YN = 'N'
+		   	    , LAST_UP_DATE = now()
+		   	    , DELETE_DATE = now()
+		 WHERE  ACCOUNT_ID = #{accountId, jdbcType=VARCHAR}
+		   AND  USE_YN = 'Y'
+	</update>
+
+</mapper>
