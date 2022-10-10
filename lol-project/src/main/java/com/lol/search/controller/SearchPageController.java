@@ -94,7 +94,7 @@ public class SearchPageController {
 				summonerMap.put("wins", jo.get("wins").getAsLong());
 				summonerMap.put("losses", jo.get("losses").getAsInt());
 				
-				// 이긴판수 ÷ 총판수 x 100
+				// 이긴판수 ÷ 총판수 x 1001
 				summonerMap.put("winningRate", Math.round(jo.get("wins").getAsDouble() / (jo.get("wins").getAsInt() + jo.get("losses").getAsInt()) * 100));
 
 			} catch(IndexOutOfBoundsException e) {}
