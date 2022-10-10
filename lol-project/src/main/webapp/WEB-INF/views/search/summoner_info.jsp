@@ -3,6 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
+<script src="${pageContext.request.contextPath}/assets/js/views/search/summoner_info.js"></script>
+
 <!--begin::Toolbar-->
 <div class="toolbar d-flex flex-stack flex-wrap py-4 gap-2" id="kt_toolbar">
 	<!--begin::Page title-->
@@ -31,6 +33,42 @@
 			<!--end::Item-->
 		</ul>
 		<!--end::Breadcrumb-->
+	</div>
+	<!--end::Page title-->
+	<!--begin::Page title-->
+	<div class="page-title d-flex flex-column align-items-start me-3 gap-1">
+		<!--begin::Block-->
+		<div class="d-lg-flex align-lg-items-center">
+			<!--begin::Simple form-->
+			<div class="rounded d-flex flex-column flex-lg-row align-items-lg-center bg-body p-5 w-xxl-850px h-lg-60px me-lg-10 my-5">
+				<!--begin::Row-->
+				<div class="row flex-grow-1 mb-5 mb-lg-0">
+					<!--begin::Col-->
+					<div class="col-lg-0 d-flex align-items-center mb-3 mb-lg-0">
+						<!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+						<span class="svg-icon svg-icon-1 svg-icon-gray-400 me-1">
+							<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+								<rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2" rx="1" transform="rotate(45 17.0365 15.1223)" fill="currentColor"></rect>
+								<path d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z" fill="currentColor"></path>
+							</svg>
+						</span>
+						<!--end::Svg Icon-->
+						<!--begin::Input-->
+						<input type="text" class="form-control form-control-flush flex-grow-1" id="search_word" name="search" value="" placeholder="Summoner Search">
+						<!--end::Input-->
+					</div>
+					<!--end::Col-->
+				</div>
+				<!--end::Row-->
+				<!--begin::Action-->
+				<div class="min-w-150px text-end">
+					<button type="button" class="btn btn-dark" id="search_btn">Search</button>
+				</div>
+				<!--end::Action-->
+			</div>
+			<!--end::Simple form-->
+		</div>
+		<!--end::Block-->
 	</div>
 	<!--end::Page title-->
 	<!--begin::Actions-->
@@ -160,7 +198,7 @@
 					<div class="me-7 mb-4">
 						<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
 							<img src="${iconImgURL}" alt="image" />
-							<div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div>
+<!-- 							<div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div> -->
 						</div>
 					</div>
 					<!--end::Pic-->
@@ -230,12 +268,12 @@
 									</span>
 									<!--end::Svg Icon-->
 									<!--begin::Indicator-->
-									<span class="indicator-label">Follow</span>
+									<span class="indicator-label">좋아요</span>
 									<span class="indicator-progress">Please wait...
 									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 									<!--end::Indicator-->
 								</a>
-								<a href="#" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">Hire Me</a>
+								<a href="#" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">싫어요</a>
 								<!--begin::Menu-->
 								<div class="me-0">
 									<button class="btn btn-sm btn-icon btn-bg-light btn-active-color-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">

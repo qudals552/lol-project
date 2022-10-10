@@ -20,6 +20,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonIOException;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.lol.common.dto.Summoner;
@@ -82,19 +83,21 @@ public class SearchPageController {
 			while((line = br.readLine()) != null) { // 받아온 JSON문자열을 계속 br에서 줄단위로 받고 출력
 				result = result + line;
 			}
-			
-			JsonArray ja = (JsonArray) jsonParser.parse(result);
-			JsonObject jo = (JsonObject) ja.get(0);
-			
-			summonerMap.put("leagueId", jo.get("leagueId").getAsString());
-			summonerMap.put("tier", jo.get("tier").getAsString());
-			summonerMap.put("rank", jo.get("rank").getAsString());
-			summonerMap.put("leaguePoints", jo.get("leaguePoints").getAsString());
-			summonerMap.put("wins", jo.get("wins").getAsLong());
-			summonerMap.put("losses", jo.get("losses").getAsInt());
-			
-			// 이긴판수 ÷ 총판수 x 100
-			summonerMap.put("winningRate", Math.round(jo.get("wins").getAsDouble() / (jo.get("wins").getAsInt() + jo.get("losses").getAsInt()) * 100));
+			try {
+				JsonArray ja = (JsonArray) jsonParser.parse(result);
+				JsonObject jo = (JsonObject) ja.get(0);
+				
+				summonerMap.put("leagueId", jo.get("leagueId").getAsString());
+				summonerMap.put("tier", jo.get("tier").getAsString());
+				summonerMap.put("rank", jo.get("rank").getAsString());
+				summonerMap.put("leaguePoints", jo.get("leaguePoints").getAsString());
+				summonerMap.put("wins", jo.get("wins").getAsLong());
+				summonerMap.put("losses", jo.get("losses").getAsInt());
+				
+				// 이긴판수 ÷ 총판수 x 100
+				summonerMap.put("winningRate", Math.round(jo.get("wins").getAsDouble() / (jo.get("wins").getAsInt() + jo.get("losses").getAsInt()) * 100));
+
+			} catch(IndexOutOfBoundsException e) {}
 			
 			// 소환사정보 DB에 추가
 			searchService.saveSummonerData(summonerMap);
