@@ -29,7 +29,7 @@ import com.lol.search.service.SearchService;
 @Controller
 @RequestMapping(value="", method=RequestMethod.GET)
 public class SearchPageController {	
-	final static String API_KEY = "RGAPI-07e2a9f8-8640-4435-9c5e-cbafcad7d096";
+	final static String API_KEY = "RGAPI-72cc5229-60ba-4d73-88d7-5993e7a9ed8e";
 	final static String GAME_VERSION = "12.19.1";
 	
 	@Autowired
@@ -105,6 +105,8 @@ public class SearchPageController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+		String tier = (String) summonerMap.get("tier");
+		mv.addObject("tierImgUrl", tier.toLowerCase());
 		mv.addObject("summoner", summonerMap);
 		mv.addObject("iconImgURL", "http://ddragon.leagueoflegends.com/cdn/"+ GAME_VERSION +"/img/profileicon/"+summonerMap.get("profileIconId")+".png");
 		mv.setViewName("page.1.search.summoner_info");

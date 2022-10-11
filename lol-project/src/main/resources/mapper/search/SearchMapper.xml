@@ -69,6 +69,7 @@
 		   	    , WINS = #{wins, jdbcType=VARCHAR}
 		   	    , LOSSES = #{losses, jdbcType=VARCHAR}
 		   	    , LAST_UP_DATE = now()
+		   	    , HITS = HITS + 1
 		 WHERE  ACCOUNT_ID = #{accountId, jdbcType=VARCHAR}
 		   AND  USE_YN = 'Y'
 	</update>

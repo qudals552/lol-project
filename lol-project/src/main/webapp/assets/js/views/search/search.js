@@ -9,7 +9,7 @@ fnObj.initEvent = function() {
 		if(search_word == '' || search_word == null || search_word == undefined){
 			return;
 		}
-		location.href = contextPath + "/search/" + search_word.replace(" ","");
+		location.href = contextPath + "/search/" + search_word.replaceAll(" ","");
 	});
 	
 	$("#search_word").on("keyup", function(key) {
@@ -18,7 +18,7 @@ fnObj.initEvent = function() {
 			if(search_word == '' || search_word == null || search_word == undefined){
 				return;
 			}
-			location.href = contextPath + "/search/" + search_word.replace(" ","");
+			location.href = contextPath + "/search/" + search_word.replaceAll(" ","");
 		}
 	});
 }
