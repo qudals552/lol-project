@@ -29,7 +29,7 @@ import com.lol.search.service.SearchService;
 @Controller
 @RequestMapping(value="", method=RequestMethod.GET)
 public class SearchPageController {	
-	final static String API_KEY = "RGAPI-72cc5229-60ba-4d73-88d7-5993e7a9ed8e";
+	final static String API_KEY = "RGAPI-90a6ad37-d2ab-4c0e-8ac5-51f953ee35fc";
 	final static String GAME_VERSION = "12.19.1";
 	
 	@Autowired
@@ -85,17 +85,30 @@ public class SearchPageController {
 			}
 			try {
 				JsonArray ja = (JsonArray) jsonParser.parse(result);
-				JsonObject jo = (JsonObject) ja.get(0);
+				for(JsonElement je : ja) {
+					System.out.println(je);
+					JsonObject jo = (JsonObject) je;
+					if("RANKED_SOLO_5x5".equals(jo.get("queueType").getAsString())) { // 솔로랭크
+						summonerMap.put("tier", jo.get("tier").getAsString());
+						summonerMap.put("rank", jo.get("rank").getAsString());
+						summonerMap.put("leagueId", jo.get("leagueId").getAsString());
+						summonerMap.put("leaguePoints", jo.get("leaguePoints").getAsInt());
+						summonerMap.put("wins", jo.get("wins").getAsInt());
+						summonerMap.put("losses", jo.get("losses").getAsInt());
+					} else if("RANKED_FLEX_SR".equals(jo.get("queueType").getAsString())) { // 자유랭크
+						summonerMap.put("tierTr", jo.get("tier").getAsString()); // TR = Team Rank 약자
+						summonerMap.put("rankTr", jo.get("rank").getAsString());
+						summonerMap.put("leagueIdTr", jo.get("leagueId").getAsString()); 
+						summonerMap.put("leaguePointsTr", jo.get("leaguePoints").getAsInt());
+						summonerMap.put("winsTr", jo.get("wins").getAsInt());
+						summonerMap.put("lossesTr", jo.get("losses").getAsInt());
+					}
+				}
+//				JsonObject jo = (JsonObject) ja.get(0);
 				
-				summonerMap.put("leagueId", jo.get("leagueId").getAsString());
-				summonerMap.put("tier", jo.get("tier").getAsString());
-				summonerMap.put("rank", jo.get("rank").getAsString());
-				summonerMap.put("leaguePoints", jo.get("leaguePoints").getAsString());
-				summonerMap.put("wins", jo.get("wins").getAsLong());
-				summonerMap.put("losses", jo.get("losses").getAsInt());
 				
 				// 이긴판수 ÷ 총판수 x 100
-				summonerMap.put("winningRate", Math.round(jo.get("wins").getAsDouble() / (jo.get("wins").getAsInt() + jo.get("losses").getAsInt()) * 100));
+//				summonerMap.put("winningRate", Math.round(jo.get("wins").getAsDouble() / (jo.get("wins").getAsInt() + jo.get("losses").getAsInt()) * 100));
 
 			} catch(IndexOutOfBoundsException e) {}
 			
@@ -105,8 +118,6 @@ public class SearchPageController {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		String tier = (String) summonerMap.get("tier");
-		mv.addObject("tierImgUrl", tier.toLowerCase());
 		mv.addObject("summoner", summonerMap);
 		mv.addObject("iconImgURL", "http://ddragon.leagueoflegends.com/cdn/"+ GAME_VERSION +"/img/profileicon/"+summonerMap.get("profileIconId")+".png");
 		mv.setViewName("page.1.search.summoner_info");

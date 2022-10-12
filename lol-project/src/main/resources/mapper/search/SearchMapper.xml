@@ -31,6 +31,12 @@
 				, LEAGUE_POINTS
 				, WINS
 				, LOSSES
+				, TIER_TR
+				, RANK_TR
+				, LEAGUE_ID_TR
+				, LEAGUE_POINTS_TR
+				, WINS_TR
+				, LOSSES_TR
 				, REG_DATE
 				, USE_YN
 			) 
@@ -49,6 +55,12 @@
 				, #{leaguePoints, jdbcType=VARCHAR}
 				, #{wins, jdbcType=VARCHAR}
 				, #{losses, jdbcType=VARCHAR}
+				, #{tierTr, jdbcType=VARCHAR}
+				, #{rankTr, jdbcType=VARCHAR}
+				, #{leagueIdTr, jdbcType=VARCHAR}
+				, #{leaguePointsTr, jdbcType=VARCHAR}
+				, #{winsTr, jdbcType=VARCHAR}
+				, #{lossesTr, jdbcType=VARCHAR}
 				, now()
 				, 'Y'
 			)
@@ -68,6 +80,12 @@
 		   	    , LEAGUE_POINTS = #{leaguePoints, jdbcType=VARCHAR}
 		   	    , WINS = #{wins, jdbcType=VARCHAR}
 		   	    , LOSSES = #{losses, jdbcType=VARCHAR}
+		   	    , TIER_TR = #{tierTr, jdbcType=VARCHAR}
+		   	    , RANK_TR = #{rankTr, jdbcType=VARCHAR}
+		   	    , LEAGUE_ID_TR = #{leagueIdTr, jdbcType=VARCHAR}
+		   	    , LEAGUE_POINTS_TR = #{leaguePointsTr, jdbcType=VARCHAR}
+		   	    , WINS_TR = #{winsTr, jdbcType=VARCHAR}
+		   	    , LOSSES_TR = #{lossesTr, jdbcType=VARCHAR}
 		   	    , LAST_UP_DATE = now()
 		   	    , HITS = HITS + 1
 		 WHERE  ACCOUNT_ID = #{accountId, jdbcType=VARCHAR}
