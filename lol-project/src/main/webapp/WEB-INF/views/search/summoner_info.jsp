@@ -196,9 +196,14 @@
 				<div class="d-flex flex-wrap flex-sm-nowrap">
 					<!--begin: Pic-->
 					<div class="me-7 mb-4">
-						<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative">
+						<div class="symbol symbol-100px symbol-lg-160px symbol-fixed position-relative" style="position: relative;">
 							<img src="${iconImgURL}" alt="image" />
 <!-- 							<div class="position-absolute translate-middle bottom-0 start-100 mb-6 bg-success rounded-circle border border-4 border-white h-20px w-20px"></div> -->
+						</div>
+						<div style="text-align: center; margin-top: -11px; margin-right: 3.5rem;">
+							<span style="color: white; background-color: black; border-radius: 1rem; position: absolute; display: inline-block; line-height: 26px; padding: 0px 12px; font-size: 15px;">
+								${summoner.summonerLevel}
+							</span>
 						</div>
 					</div>
 					<!--end::Pic-->
@@ -235,8 +240,15 @@
 <!-- 									</span> -->
 									<c:choose>
 										<c:when test="${summoner.tier != null}">
-											<img src="${pageContext.request.contextPath}/assets/images/tier/${summoner.tier}.png" style="width: 3.5rem; border-radius: 0.95rem; margin-right: 0.5rem;"/>
-											${summoner.tier} ${summoner.rank}
+											<img src="${pageContext.request.contextPath}/assets/images/tier/${summoner.tier}.png" style="width: 5rem; border-radius: 1rem; margin-right: 0.5rem;"/>
+											<div style="display: grid">
+												<span class="text-gray-700 text-hover-primary fs-4 fw-bolder me-1">
+													${summoner.tier} ${summoner.rank}
+												</span>
+												<span>
+													${summoner.leaguePoints}LP
+												</span>
+											</div>
 										</c:when>
 										<c:otherwise>
 											Unranked
@@ -493,32 +505,27 @@
 				<ul class="nav nav-stretch nav-line-tabs nav-line-tabs-2x border-transparent fs-5 fw-bolder">
 					<!--begin::Nav item-->
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="../../demo19/dist/pages/user-profile/overview.html">Overview</a>
+						<a class="nav-link text-active-primary ms-0 me-10 py-5 active" href="../../demo19/dist/pages/user-profile/overview.html">모든게임</a>
 					</li>
 					<!--end::Nav item-->
 					<!--begin::Nav item-->
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/projects.html">Projects</a>
+						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/projects.html">솔로랭크</a>
 					</li>
 					<!--end::Nav item-->
 					<!--begin::Nav item-->
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/campaigns.html">Campaigns</a>
+						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/campaigns.html">자유랭크</a>
 					</li>
 					<!--end::Nav item-->
 					<!--begin::Nav item-->
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/documents.html">Documents</a>
+						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/documents.html">챔피언 숙련도</a>
 					</li>
 					<!--end::Nav item-->
 					<!--begin::Nav item-->
 					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/followers.html">Followers</a>
-					</li>
-					<!--end::Nav item-->
-					<!--begin::Nav item-->
-					<li class="nav-item mt-2">
-						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/activity.html">Activity</a>
+						<a class="nav-link text-active-primary ms-0 me-10 py-5" href="../../demo19/dist/pages/user-profile/followers.html">인게임정보</a>
 					</li>
 					<!--end::Nav item-->
 				</ul>
