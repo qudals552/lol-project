@@ -29,7 +29,7 @@ import com.lol.search.service.SearchService;
 @Controller
 @RequestMapping(value="", method=RequestMethod.GET)
 public class SearchPageController {	
-	final static String API_KEY = "RGAPI-6e886ccc-8ca3-4947-a494-afdf80ef50a9";
+	final static String API_KEY = "RGAPI-d3cf9aba-8c22-41d4-8e92-da65f3361e76";
 	final static String GAME_VERSION = "12.19.1";
 	
 	@Autowired
